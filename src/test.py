@@ -67,3 +67,39 @@ for idx, a in enumerate(a_el):
   #  print(f"{idx} : {a.get_text()}")  # a.get_text() : 엘리먼트를 제외한 텍스트만 추출
   #  print(f"{idx} : {a.get('href')}")
     print(f"{idx} : {a.get('class')}")
+
+# ! select_one : html 상에 첫 번째로 일치하는 요소를 가져옴
+print("== select_one 사용법 ==")
+
+print("== 태그로 검색 ==") 
+print(soup.select_one('nav'))
+
+print("== 클래스로 검색 ==")
+print(soup.select_one('.menu-box-1')) # class가 menu-box-1인 엘리먼트 선택
+
+print("== id로 검색 ==")
+print(soup.select_one('#menu-box')) #id 가 menu-box인 엘리먼트 선택
+
+# class 가 daum인 녀석을 검색
+#print(soup.select_one('.daum'))
+
+#nav의 자식인 ul, ul의 자식인 li들을 검색 ,검색 결과가 리스트 객체로 변환되어서 나움
+print(soup.select_one('nav > ul > li '))
+
+print("== select 사용법 ==")
+#nav의 후손인 a 엘리먼트들을 검색
+print(soup.select('nav a'))
+
+#반복문
+a_el = soup.select('nav a')
+for idx, a in enumerate(a_el):
+ #print(f"{idx} : {a}")
+ #print(f"{idx} : {a.get_text()}")  # 반복문을 이용하여 a엘리먼트의 텍스트만 추출
+ #print(f"{idx} : {a.get('href')}")  # 
+ print(f"{idx} : {a.get('class')}")  # 
+
+
+
+# 대괄호는 '[]'는 속성 선택자
+# a[href] : 엘리먼트 a 이면서 속성이 href인 대상을 선택
+print(soup.select('a[href]'))
